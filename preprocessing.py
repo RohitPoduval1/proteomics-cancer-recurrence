@@ -162,6 +162,7 @@ def build_pan_cancer_dataloaders(cancer_data: dict[str, dict], top_k_prot: int =
     X_prot_train_pan, X_prot_test_pan = pd.concat(X_prot_train_list), pd.concat(X_prot_test_list)
     X_phos_train_pan, X_phos_test_pan = pd.concat(X_phos_train_list), pd.concat(X_phos_test_list)
     y_train_pan, y_test_pan = pd.concat(y_train_list), pd.concat(y_test_list)
+    print(f"TOTAL RECURRENCE: {y_train_pan.sum() + y_test_pan.sum()}")
 
     print(f"\nOriginal Train Shapes -> Prot: {X_prot_train_pan.shape}, Phos: {X_phos_train_pan.shape}")
 
