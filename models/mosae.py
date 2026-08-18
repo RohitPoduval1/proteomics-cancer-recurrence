@@ -4,36 +4,6 @@ from torch import nn
 from .prot_encoder import ProteomicsAutoencoder
 from .phosphoprot_encoder import PhosphoproteomicsAutoencoder
 
-# class MOSAE(nn.Module):
-#     def __init__(self, prot_dim: int, phos_dim: int, dropout_rate):
-#         super(MOSAE, self).__init__()
-#         
-#         self.prot_ae = ProteomicsAutoencoder(input_dim=prot_dim, dropout_rate=dropout_rate)
-#         self.phos_ae = PhosphoproteomicsAutoencoder(input_dim=phos_dim, dropout_rate=dropout_rate)
-#         
-#         # Classifier Head
-#         self.classifier = nn.Sequential(
-#             nn.Linear(256, 16),
-#             nn.BatchNorm1d(16),
-#             nn.ReLU(),
-#             nn.Dropout(dropout_rate),
-#             nn.Linear(16, 1)
-#         )
-#
-#     def forward(self, x_prot, x_phos):
-#         # Pass inputs through their respective autoencoders
-#         recon_prot, latent_prot = self.prot_ae(x_prot)
-#         recon_phos, latent_phos = self.phos_ae(x_phos)
-#         
-#         # Fusion: Element-wise Averaging
-#         # This forces both modalities to agree on the semantic meaning of the 256 dimensions
-#         fused_latent = (latent_prot + latent_phos) / 2.0
-#         
-#         # Predict recurrence from the fused biological signature
-#         logits = self.classifier(fused_latent)
-#         
-#         return recon_prot, recon_phos, fused_latent, logits
-
 class MOSAE(nn.Module):
     def __init__(self, prot_dim: int, phos_dim: int, dropout_rate: float = 0.3):
         super().__init__()
